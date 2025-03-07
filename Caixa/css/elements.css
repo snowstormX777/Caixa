@@ -154,11 +154,23 @@ registramov{
     margin-top: 5%;
     margin-left: 4%;
     border-collapse: collapse;
-    width: 50%;
-    height: 50%;
-    align-items: center;
-    text-align: center;
+    width: 20%;
+    height: 40%;
     justify-content: center;
     border: 2px solid black;
+    padding-top: 2%;
+    padding-left: 4%;
+    padding-right: 4%;
+    padding-bottom: 2%;
+    border-radius: 10px;
 }
+#extrato{
+    margin-top: 5%;
+    margin-left: 4%;
+    border-collapse: collapse;
+    width: 30%;
+    height: auto;
+  }
+  
+
  

@@ -4,9 +4,11 @@ function alternarTabela(){
     y.style.display = "none";
     if(x.style.display === "table"){
         x.style.display = "none";
-        y.style.display = "block";
+        y.style.display = "flex";
     } else {
         x.style.display = "table";
         y.style.display = "none";
     }
+    document.getElementById('data').valueAsDate = new Date();
 }
+

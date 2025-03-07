@@ -44,15 +44,16 @@
       </a>
     </links>
   </nav>
+  <grid2>
   <tmovimento>
-  <table id="movimento">
+    <table id="movimento">
     <tr>
       <th>ID</th>
       <th>Data</th>
       <th>Descrição</th>
       <th>Valor</th>
       <th>Tipo</th>
-    </tr>
+    </tr> 
     <tr>
     <td>aaaaaa</td>
     <td>aaaaa</td>
@@ -89,20 +90,37 @@
             <td>aaaaa</td>
             </tr>
   </table>
-  </tmovimento>
+</tmovimento>
+  
+
   <registramov>
     <form action="#">
       <Label>Data do movimento</Label>
-      <input type="date">
+      <input type="date" id="data"><br>
       <label>Descrição</label>
-      <input type="text">
+      <input type="text"><br>
       <label>Valor</label>
-      <input type="number">
-      <label>Tipo</label>
+      <input type="number"><br>
+      <label>Tipo</label><br>
+      <label>Entrada</label>
       <input type="radio" name="tipo">
-      <input type="radio" name="tipo">
+      <label>Saída</label>
+      <input type="radio" name="tipo"><br>
+      <button type="button">Salvar</button>
     </form>
   </registramov>
+  <mostraextrato>
+    <table id="extrato">
+
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </table>
+  </mostraextrato>
+  </grid2>
+  
 </body>
 
 </html>
