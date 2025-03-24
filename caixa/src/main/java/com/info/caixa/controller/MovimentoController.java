@@ -92,8 +92,10 @@ public class MovimentoController {
         Saldo saldo = new Saldo();
         mr.save(movimento);
         if (sr.findByData(movimento.getData()).isEmpty()) {
-            saldo.setData(movimento.getData());
-            saldo.setValor(sr.pegaValorAnterior(movimento.getData()).getLast());
+            if(sr.pegaValorAnterior(movimento.getData()).getLast()!=0){
+                saldo.setData(movimento.getData());
+                saldo.setValor(sr.pegaValorAnterior(movimento.getData()).getLast());
+            }
             sr.save(saldo);
         } else {
             if (movimento.getTipo() == 0) {
