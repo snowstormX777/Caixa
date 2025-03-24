@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Caixa</title>
+  <script src="./js/lucide.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet">
+    <link rel="stylesheet" href="/css/fonts.css">
+  <link rel="stylesheet" href="/css/colors.css">
+  <link rel="stylesheet" href="/css/elements.css">
+  <script src="./js/tabelas.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      lucide.createIcons();
+    })
+  </script>
+  
+</head>
+
+<body>
+  <nav>
+    <h1>Caixa</h1>
+    <menu> <!-- depois -->
+      <circle>
+        <i data-lucide="menu"></i>
+      </circle>
+    </menu>
+  </nav>
+  
+  <forms>
+    <form th:action="@{/movimento/salvar}" th:object="${movimento}" method="POST">
+      <input type="hidden" th:field="*{id}"/>
+      <Label>Data do movimento</Label>
+      <input type="date" id="data" th:field="*{dataFormatada}" required><br>
+      <label>Descrição</label>
+      <input type="text" th:field="*{descricao}" required><br>
+      <label>Valor</label>
+      <input type="number" step="any" th:field="*{valor}" required><br>
+      <label>Tipo</label><br>
+      <label>Entrada</label>
+      <input type="radio" name="tipo" value=1 th:field="*{tipo}">
+      <label>Saída</label>
+      <input type="radio" name="tipo" value=0 th:field="*{tipo}"><br>
+      <button type="submit">Salvar</button>
+      <button type="button"><a th:href="@{/movimento/}" style="color: inherit; text-decoration: none;">Cancelar</a></button>
+    </form>
+  </forms>
+  
+</body>
+
+</html>
