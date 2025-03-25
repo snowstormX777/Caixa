@@ -39,9 +39,9 @@
       <Label>Data do movimento</Label>
       <input type="date" id="data" th:field="*{dataFormatada}" required><br>
       <label>Descrição</label>
-      <input type="text" th:field="*{descricao}" required><br>
+      <input type="text" th:field="*{descricao}" required autocomplete="off"><br>
       <label>Valor</label>
-      <input type="number" step="any" th:field="*{valor}" required><br>
+      <input type="number" step="0.01" th:field="*{valor}" min="0" required><br>
       <label>Tipo</label><br>
       <label>Entrada</label>
       <input type="radio" name="tipo" value=1 th:field="*{tipo}">

@@ -59,9 +59,15 @@ public class MovimentoController {
 
     @PostMapping("/extrato")
     public String montaExtrato(@ModelAttribute("extrato") Extrato extrato, Model model) {
-        if(extrato.getTipo()==false){
+        Date di = extrato.getDataInicial();
+        Date df = extrato.getDataFinal();
+        if(extrato.getDataInicial().after(extrato.getDataFinal())){
+            extrato.setDataFinal(di);
+            extrato.setDataInicial(df);
+        }
+        if (extrato.getTipo() == false) {
             extrato.setDataFinal(extrato.getDataInicial());
-        }else{
+        } else {
             extrato.setDataFinal(extrato.getDataFinal());
         }
         Movimento saldoI = new Movimento();
@@ -90,15 +96,14 @@ public class MovimentoController {
         Saldo saldo = new Saldo();
         mr.save(movimento);
         if (sr.findByData(movimento.getData()).isEmpty()) {
-            if(sr.pegaValorAnterior(movimento.getData()).getLast()==0){
-                saldo.setData(movimento.getData());
-                if(movimento.getTipo() == 0) {
-                    saldo.setValor(-movimento.getValor());
-                }else{
-                    saldo.setValor(movimento.getValor());
-                }
-            }
+            saldo.setData(movimento.getData());
+            saldo.setValor(sr.pegaValorAnterior(movimento.getData()).getLast());
             sr.save(saldo);
+            if (movimento.getTipo() == 0) {
+                sr.atualizaSaldo(-movimento.getValor(), movimento.getData());
+            } else {
+                sr.atualizaSaldo(movimento.getValor(), movimento.getData());
+            }
         } else {
             if (movimento.getTipo() == 0) {
                 sr.atualizaSaldo(-movimento.getValor(), movimento.getData());
