@@ -73,12 +73,10 @@ public class MovimentoController {
         Double valorF = saldoI.getValor();
         saldoF.setData(extrato.getDataFinal());
         saldoF.setDescricao("Saldo Final");
+        System.out.println(valorF);
         saldoF.setTipo(1);
         listaExtrato = mr.listaExtrato(extrato.getDataInicial(), extrato.getDataFinal());
-        for (Movimento movimento : listaExtrato) {
-            valorF += movimento.getValor();
-        }
-        saldoF.setValor(valorF);
+        saldoF.setValor(sr.pegaValorFinal(extrato.getDataFinal()).getLast());
 
         listaExtrato.addFirst(saldoI);
         listaExtrato.addLast(saldoF);
@@ -92,9 +90,13 @@ public class MovimentoController {
         Saldo saldo = new Saldo();
         mr.save(movimento);
         if (sr.findByData(movimento.getData()).isEmpty()) {
-            if(sr.pegaValorAnterior(movimento.getData()).getLast()!=0){
+            if(sr.pegaValorAnterior(movimento.getData()).getLast()==0){
                 saldo.setData(movimento.getData());
-                saldo.setValor(sr.pegaValorAnterior(movimento.getData()).getLast());
+                if(movimento.getTipo() == 0) {
+                    saldo.setValor(-movimento.getValor());
+                }else{
+                    saldo.setValor(movimento.getValor());
+                }
             }
             sr.save(saldo);
         } else {

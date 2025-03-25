@@ -17,6 +17,9 @@ public interface SaldoRepository extends JpaRepository<Saldo, Integer> {
     
     @Query("SELECT s.valor FROM Saldo s WHERE s.data < :data ORDER BY s.data")
     public List<Double> pegaValorAnterior(@Param("data") Date data);
+    
+    @Query("SELECT s.valor FROM Saldo s WHERE s.data <= :data ORDER BY s.data")
+    public List<Double> pegaValorFinal(@Param("data") Date data);
             
     List<Saldo> findByData(Date data);
 }
